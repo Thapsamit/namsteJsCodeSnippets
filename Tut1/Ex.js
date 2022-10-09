@@ -51,7 +51,9 @@ const debouncing = (fn,delay)=>{
 }
 const better = debouncing(getData,300)
 */
-// throttling 
+// throttling
+
+/*
 const throttle = document.getElementById("throttle");
 const exp = ()=>{
     console.log("expense")
@@ -74,3 +76,57 @@ function throttling(fun,limit){
 }
 const betterThrottle = throttling(exp,500);
 throttle.addEventListener("click",betterThrottle)
+*/
+
+// promises
+
+// first using callback
+/*
+const cart = ['pants','jeans','shirts']
+
+// make payment is under the control of create order therefore it is not gurranteed that it will be called or maybe called twice or thrices
+// can't blindly trust it 
+createOrder(cart,(orderId)=>{
+    makePayment(orderId)
+})
+
+
+const promise = creatOrder(cart)
+// gives like {data:undefined}
+// it later filled the data with value after promise resolved maybe after 2s,3s or ns
+// how to resolve ??
+
+promise.then((orderId)=>{
+    proceddToPayment(orderId)
+})
+*/
+
+// fetching github profile
+
+
+
+
+
+
+const url = 'https://api.github.com/users/Thapsamit';
+
+const user = fetch(url)
+console.log('test')
+console.log(user)
+user.then((data)=>{
+    console.log(data)
+})
+
+// promise chaining 
+
+// when we have multiple callbacks then instead making a callack hell we can use promise chaining
+
+
+createOrder(cart)
+.then(()=>{
+    return updateSummary(info) // return required to return a promise object
+})
+.then(()=>{
+    return walletSummary(id)
+})
+
